@@ -1,11 +1,14 @@
 package com.universityfinance.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.universityfinance.domain.enumeration.StudentStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Student.
@@ -52,6 +55,10 @@ public class Student implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private StudentStatus status;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+    @JsonIgnoreProperties(value = { "student" }, allowSetters = true)
+    private Set<FinancialObligation> financialObligations = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -144,6 +151,37 @@ public class Student implements Serializable {
 
     public void setStatus(StudentStatus status) {
         this.status = status;
+    }
+
+    public Set<FinancialObligation> getFinancialObligations() {
+        return this.financialObligations;
+    }
+
+    public void setFinancialObligations(Set<FinancialObligation> financialObligations) {
+        if (this.financialObligations != null) {
+            this.financialObligations.forEach(i -> i.setStudent(null));
+        }
+        if (financialObligations != null) {
+            financialObligations.forEach(i -> i.setStudent(this));
+        }
+        this.financialObligations = financialObligations;
+    }
+
+    public Student financialObligations(Set<FinancialObligation> financialObligations) {
+        this.setFinancialObligations(financialObligations);
+        return this;
+    }
+
+    public Student addFinancialObligation(FinancialObligation financialObligation) {
+        this.financialObligations.add(financialObligation);
+        financialObligation.setStudent(this);
+        return this;
+    }
+
+    public Student removeFinancialObligation(FinancialObligation financialObligation) {
+        this.financialObligations.remove(financialObligation);
+        financialObligation.setStudent(null);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

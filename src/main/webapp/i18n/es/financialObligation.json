@@ -1,0 +1,27 @@
+{
+  "universityFinanceApp": {
+    "financialObligation": {
+      "home": {
+        "title": "Financial Obligations",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Financial Obligation",
+        "createOrEditLabel": "Crear o editar Financial Obligation",
+        "notFound": "Ningún Financial Obligations encontrado"
+      },
+      "created": "Un nuevo Financial Obligation ha sido creado con el identificador {{ param }}",
+      "updated": "Un Financial Obligation ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Financial Obligation ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Financial Obligation {{ id }}?"
+      },
+      "detail": {
+        "title": "Financial Obligation"
+      },
+      "id": "ID",
+      "amount": "Amount",
+      "dueDate": "Due Date",
+      "status": "Status",
+      "student": "Student"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "universityFinanceApp": {
+    "ObligationStatus": {
+      "null": "",
+      "OUTSTANDING": "OUTSTANDING",
+      "PARTIALLY_PAID": "PARTIALLY_PAID",
+      "PAID": "PAID"
+    }
+  }
+}

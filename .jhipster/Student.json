@@ -45,7 +45,15 @@
   ],
   "name": "Student",
   "pagination": "pagination",
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "financialObligation",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "financialObligation",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
   "searchEngine": "no",
   "service": "serviceClass"
 }
