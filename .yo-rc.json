@@ -14,7 +14,7 @@
     "enableGradleDevelocity": false,
     "enableHibernateCache": false,
     "enableTranslation": true,
-    "entities": ["Student"],
+    "entities": ["Student", "FinancialObligation"],
     "feignClient": null,
     "gradleDevelocityHost": null,
     "jhipsterVersion": "9.4.0",

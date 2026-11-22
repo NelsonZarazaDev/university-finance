@@ -36,6 +36,8 @@ public class CacheConfiguration {
             createCache(cm, com.universityfinance.repository.UserRepository.USERS_BY_EMAIL_CACHE);
             createCache(cm, com.universityfinance.domain.Authority.class.getName());
             createCache(cm, com.universityfinance.domain.Student.class.getName());
+            createCache(cm, com.universityfinance.domain.Student.class.getName() + ".financialObligations");
+            createCache(cm, com.universityfinance.domain.FinancialObligation.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

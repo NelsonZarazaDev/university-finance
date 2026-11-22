@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20261122051848"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "amount",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "dueDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ObligationStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "OUTSTANDING,PARTIALLY_PAID,PAID"
+    }
+  ],
+  "name": "FinancialObligation",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "financialObligation",
+      "relationshipName": "student",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}
