@@ -1,0 +1,20 @@
+services:
+  oracle:
+    image: gvenzl/oracle-free:23-slim
+    container_name: jhipster-oracle
+    environment:
+      - ORACLE_PASSWORD=MZ%T!ZkuMN7c%LyN^eec
+      - APP_USER=oracle
+      - APP_USER_PASSWORD=MZ%T!ZkuMN7c%LyN^eec
+    ports:
+      - '1521:1521'
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    healthcheck:
+      test: ['CMD', 'healthcheck.sh']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  oracle-data:

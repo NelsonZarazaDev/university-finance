@@ -1,0 +1,10 @@
+{
+  "universityFinanceApp": {
+    "StudentStatus": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "INACTIVE": "INACTIVE",
+      "GRADUATED": "GRADUATED"
+    }
+  }
+}

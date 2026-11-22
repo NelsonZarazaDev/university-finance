@@ -1,0 +1,40 @@
+
+enum StudentStatus {
+  ACTIVE,
+  INACTIVE,
+  GRADUATED
+}
+
+entity Student {
+  studentCode String required unique maxlength(20)
+  firstName String required minlength(2) maxlength(60)
+  lastName String required minlength(2) maxlength(60)
+  email String required unique maxlength(120)
+  enrollmentDate LocalDate required
+  status StudentStatus required
+}
+
+dto Student with mapstruct
+service Student with serviceClass
+paginate Student with pagination
+
+
+enum ObligationStatus {
+  OUTSTANDING,
+  PARTIALLY_PAID,
+  PAID
+}
+
+entity FinancialObligation{
+  amount BigDecimal required min(0)
+  dueDate LocalDate required
+  status ObligationStatus required
+}
+
+relationship ManyToOne{
+  FinancialObligation{student(id) required} to Student{financialObligation}
+}
+
+dto FinancialObligation with mapstruct
+service FinancialObligation with serviceClass
+paginate FinancialObligation with pagination
