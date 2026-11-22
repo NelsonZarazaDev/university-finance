@@ -32,10 +32,12 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:oracle:thin:@localhost:1521:xe
+    url: jdbc:oracle:thin:@//localhost:1521/FREEPDB1
     hikari:
       poolName: Hikari
       auto-commit: false
+    username: oracle
+    password: 'MZ%T!ZkuMN7c%LyN^eec'
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
