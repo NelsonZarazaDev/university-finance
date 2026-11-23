@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, FormText, Row } from 'react-bootstrap';
 import { Translate, ValidatedField, ValidatedForm, isNumber, translate } from 'react-jhipster';
 import { Link, useNavigate, useParams } from 'react-router';
@@ -6,7 +6,8 @@ import { Link, useNavigate, useParams } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { getEntities as getStudents } from 'app/entities/student/student.reducer';
+import { IStudentOption } from 'app/shared/model/student-option.model';
+import { getStudentOptions } from 'app/shared/service/student-option.service.ts';
 import { ObligationStatus } from 'app/shared/model/enumerations/obligation-status.model';
 
 import { createEntity, getEntity, reset, updateEntity } from './financial-obligation.reducer';
@@ -19,7 +20,7 @@ export const FinancialObligationUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const students = useAppSelector(state => state.student.entities);
+  const [students, setStudents] = useState<IStudentOption[]>([]);
   const financialObligationEntity = useAppSelector(state => state.financialObligation.entity);
   const loading = useAppSelector(state => state.financialObligation.loading);
   const updating = useAppSelector(state => state.financialObligation.updating);
@@ -37,8 +38,14 @@ export const FinancialObligationUpdate = () => {
       dispatch(getEntity(id));
     }
 
-    dispatch(getStudents({}));
-  }, []);
+    getStudentOptions()
+      .then(data => {
+        setStudents(data);
+      })
+      .catch(error => {
+        console.error('Error loading student options:', error);
+      });
+  }, [dispatch, id, isNew]);
 
   useEffect(() => {
     if (updateSuccess) {
@@ -146,14 +153,13 @@ export const FinancialObligationUpdate = () => {
                 type="select"
                 required
               >
-                <option value="" key="0" />
-                {students
-                  ? students.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.firstName} {otherEntity.lastName}
-                      </option>
-                    ))
-                  : null}
+                <option value="">Select a student</option>
+
+                {students.map(student => (
+                  <option value={student.id} key={student.id}>
+                    {student.firstName} {student.lastName}
+                  </option>
+                ))}
               </ValidatedField>
               <FormText>
                 <Translate contentKey="entity.validation.required">This field is required.</Translate>
