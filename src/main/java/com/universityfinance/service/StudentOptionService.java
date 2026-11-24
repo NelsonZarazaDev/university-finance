@@ -4,7 +4,6 @@ import com.universityfinance.repository.StudentOptionRepository;
 import com.universityfinance.service.dto.StudentOptionDTO;
 import java.util.List;
 import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,7 @@ public class StudentOptionService {
 
     private final StudentOptionRepository studentOptionRepository;
 
-    @CacheEvict(cacheNames = "studentOptions", allEntries = true)
+    @Cacheable(cacheNames = "studentOptions")
     public List<StudentOptionDTO> getStudentOptions() {
         return studentOptionRepository
             .findAllProjectedBy()
