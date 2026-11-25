@@ -5,6 +5,7 @@ import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 import PageNotFound from 'app/shared/error/page-not-found';
 
 import FinancialObligation from './financial-obligation';
+import Payment from './payment';
 import Student from './student';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
@@ -15,6 +16,7 @@ export default () => {
         {/* prettier-ignore */}
         <Route path="/student/*" element={<Student />} />
         <Route path="/financial-obligation/*" element={<FinancialObligation />} />
+        <Route path="/payment/*" element={<Payment />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
         <Route path="*" element={<PageNotFound />} />
       </ErrorBoundaryRoutes>

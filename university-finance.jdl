@@ -1,3 +1,4 @@
+// npx jhipster import-jdl university-finance.jdl
 
 enum StudentStatus {
   ACTIVE,
@@ -38,3 +39,17 @@ relationship ManyToOne{
 dto FinancialObligation with mapstruct
 service FinancialObligation with serviceClass
 paginate FinancialObligation with pagination
+
+
+entity Payment{
+  amount BigDecimal required min(0.01)
+  paymentDate Instant required
+}
+
+relationship ManyToOne{
+  Payment{financialObligation(id) required} to FinancialObligation
+}
+
+dto Payment with mapstruct
+service Payment with serviceClass
+paginate Payment with pagination

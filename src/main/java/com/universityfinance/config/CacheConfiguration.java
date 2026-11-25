@@ -39,6 +39,7 @@ public class CacheConfiguration {
             createCache(cm, com.universityfinance.domain.Student.class.getName() + ".financialObligations");
             createCache(cm, com.universityfinance.domain.FinancialObligation.class.getName());
             createCache(cm, "studentOptions");
+            createCache(cm, com.universityfinance.domain.Payment.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
